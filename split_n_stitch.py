@@ -1,3 +1,4 @@
+# 2023 Nicolas Verschueren van Rees: nv13699@my.bristol.ac.uk
 from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt

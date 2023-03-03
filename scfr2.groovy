@@ -10,7 +10,7 @@
  *
  * @author Pete Bankhead
  */
-
+// modified by Nicolas Verschueren
 import qupath.lib.common.GeneralTools
 import qupath.lib.images.servers.ImageServerProvider
 import qupath.lib.images.servers.ImageServers
@@ -31,8 +31,12 @@ File dir
 List<File> files
 File fileOutput
 
-String pathin='/home/nv277/pancreas_hum/imageset/feb2023/split_dvd1_2102_bg11_5h/'
-String outpath='/home/nv277/pancreas_hum/imageset/feb2023/split_dvd1_2102_bg11_5h/stitched/'
+String pathin="/home/nv277/pancreas_hum/imageset/feb2023/second_dvd/stitching/"
+//'/home/nv277/pancreas_hum/imageset/feb2023/second_dvd/'
+//'/home/nv277/pancreas_hum/imageset/feb2023/split_dvd1_2102_bg11_5h/'
+String outpath="/home/nv277/pancreas_hum/imageset/feb2023/second_dvd/stitching/output/"
+//'/home/nv277/pancreas_hum/imageset/feb2023/second_dvd/stitching/'
+//'/home/nv277/pancreas_hum/imageset/feb2023/split_dvd1_2102_bg11_5h/stitched/'
 static ImageRegion parseRegion(File file, int z = 0, int t = 0) {
     if (checkTIFF(file)) {
         try {
@@ -121,6 +125,7 @@ for(int count=0;count<N;count++)
 {
 
 dir = new File(pathin+count)
+print dir    
 files=dir.listFiles()
 fileOutput = new File(outpath, count+'.ome.tif')
 print 'Parsing regions from ' + files.size() + ' files...'
