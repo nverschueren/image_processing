@@ -31,10 +31,14 @@ File dir
 List<File> files
 File fileOutput
 
-String pathin="/home/nv277/pancreas_hum/imageset/feb2023/second_dvd/stitching/"
+String pathin="/home/nv277/pancreas_hum/imageset/feb2023/ctrlnpod6251_5h/out/"
+    //"/home/nv277/pancreas_hum/imageset/feb2023/second_dvd/stitching/output/"
+///home/nv277/pancreas_hum/imageset/feb2023/second_dvd/stitching/"
 //'/home/nv277/pancreas_hum/imageset/feb2023/second_dvd/'
 //'/home/nv277/pancreas_hum/imageset/feb2023/split_dvd1_2102_bg11_5h/'
-String outpath="/home/nv277/pancreas_hum/imageset/feb2023/second_dvd/stitching/output/"
+String outpath="/home/nv277/pancreas_hum/imageset/feb2023/ctrlnpod6251_5h/out/stitched/"
+    //"/home/nv277/pancreas_hum/imageset/feb2023/second_dvd/stitching/output/omes/"
+//    "/home/nv277/pancreas_hum/imageset/feb2023/second_dvd/stitching/output/"
 //'/home/nv277/pancreas_hum/imageset/feb2023/second_dvd/stitching/'
 //'/home/nv277/pancreas_hum/imageset/feb2023/split_dvd1_2102_bg11_5h/stitched/'
 static ImageRegion parseRegion(File file, int z = 0, int t = 0) {
@@ -120,7 +124,7 @@ static double getRational(TIFFDirectory tiffDir, int tag) {
  * @return
  */
 
-int N=4
+int N=15
 for(int count=0;count<N;count++)
 {
 

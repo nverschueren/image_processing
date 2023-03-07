@@ -41,6 +41,7 @@ plt.scatter(xmax,ymax,color='r')
 plt.scatter(xmin,ymax,color='r')
 ax=plt.gca()
 ax.set_aspect(1)
+ax.invert_yaxis()
 plt.show(block=False)
 
 print("The suggested number of clusters is: "+ str(N)+" and the width/height=" +str(a)+" .Based on these numbers and the picture you just saw, you need to decide how many horizontal and vertical divisions use for the splitting. For example if N=6=2*3. Then you might want to put more divisions along the 'longest side' (horizontal if a>1, opposite otherwise). Assuming a>1, then I want 3-1=2 divisions in x and 2-1=1 divisions in y")
@@ -68,6 +69,7 @@ while undecided:
 
         ax=plt.gca()
         ax.set_aspect(1)
+        ax.invert_yaxis()
         plt.show(block=False)
 
         print("Here's the divisions in xs and ys, you can rewrite them here")
@@ -117,6 +119,7 @@ while undecided:
     ax.set_aspect(1)
     plt.scatter(p['x'],p['y'],color=p['cluster'].map(co))
     [plt.text(cenofmass[i][0],cenofmass[i][1],str(i),fontsize=20) for i in range(0,len(cenofmass))]
+    ax.invert_yaxis()
     plt.show(block=False)
 
     #now, print the space on each cluster
