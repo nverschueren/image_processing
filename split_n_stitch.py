@@ -1,4 +1,13 @@
 # 2023 Nicolas Verschueren van Rees: nv13699@my.bristol.ac.uk
+# update 29/6
+# The purpose of this script is to  automate the process of dividing the tiles into manageable files for QuPath.
+# This is done in  steps
+# I) Ask for the directory where the tiles are (prompt)
+# We compute the position and size of the tiles (top left pixel) in variable ll (line 23)
+# we ask the user what is the maximum size your computer can hande (4gb for a laptop, 10gb for scan). Then we estimate how many big pictures (clusters) we suggest in variable N (line 35)
+# useful additions:
+# i) save the final figure with the respective clusters and colours next to the subdirectories
+# ii) Create a file with the necessary information to compute the absolute distances 
 from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
@@ -44,7 +53,7 @@ ax.set_aspect(1)
 ax.invert_yaxis()
 plt.show(block=False)
 
-print("The suggested number of clusters is: "+ str(N)+" and the width/height=" +str(a)+" .Based on these numbers and the picture you just saw, you need to decide how many horizontal and vertical divisions use for the splitting. For example if N=6=2*3. Then you might want to put more divisions along the 'longest side' (horizontal if a>1, opposite otherwise). Assuming a>1, then I want 3-1=2 divisions in x and 2-1=1 divisions in y")
+print("The suggested number of clusters is: "+ str(N)+" and the width/height=" +str(a)+" .Based on these numbers and the picture displayed, you need to decide how many horizontal and vertical divisions use for the splitting. For example if N=6=2*3. Then you might want to put more divisions along the 'longest side' (horizontal if a>1, opposite otherwise). Assuming a>1, then I want 3-1=2 divisions in x and 2-1=1 divisions in y")
 divx=input("How many divisions do you want in x? ")
 divy=input("How many divisions do you want in y? ")
 xs=[xmin+(xmax-xmin)*(i+1)/(int(divx)+1) for i in range(0,int(divx))]
@@ -66,7 +75,7 @@ while undecided:
 
         for i in range(0,len(ys)):
             plt.plot([xmin,xmax],[ys[i],ys[i]])
-
+            
         ax=plt.gca()
         ax.set_aspect(1)
         ax.invert_yaxis()
@@ -151,7 +160,10 @@ cl=list(q['cluster'])
 outpath=askdirectory(title='Select a folder for the subdirectories') # shows dialog box and return the path
 os.chdir(outpath)
 [os.mkdir('./'+str(d)+'/') for d in cl]
-
+os.mkdir('./extra_information/')
+plt.savefig('./extra_information/clusters.png',dpi=150)
+q=p.groupby(by=['cluster']).agg({'cluster':'count','size_mb':'sum','x':['min','max','mean'],'y':['min','max','mean']})
+q.to_csv('./extra_information/points.csv');#this is in pixel units, I think
 for cc in cl:
     ima=list(p[p['cluster']==cc]['name'])
     for i in range(0,len(ima)):
@@ -159,5 +171,5 @@ for cc in cl:
 
 fin=input("check if the images have been moved as expected. Unless you want to revert these changes, the program will exit. Do you want to revert? [y/other]")
 if fin=="y":
-    print("not implemented yet! sorry")
+    print("This has not implemented yet! sorry. You can use the script undo_dir.py in the local directory for this task")
     
