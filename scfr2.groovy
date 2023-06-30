@@ -10,7 +10,14 @@
  *
  * @author Pete Bankhead
  */
-// modified by Nicolas Verschueren
+// modified by Nicolas Verschueren nv13699@my.bristol.ac.uk
+// The purpose of this modified version is to go through subdirectories called
+// 0/ , 1/, ...., N/ and stitch the images in each individually
+// In order to accomplish this you need to adapt the following lines
+// In Lines 37 and 42, I the variables 'pathin' and 'outpath' are the parent directory for the input (e.g. pathin/0/, pathin/1/, etc) and outpath is where the stitched ome.tif file will be created.
+// In Line 133 N=15 is the total number of subdirectories. If you have 0/, 1/,..4/ then N=5.
+//Once you have defined these lines according to your images, you can simply run from the command line user@machine:$ QuPath script scfr2.groovy 
+
 import qupath.lib.common.GeneralTools
 import qupath.lib.images.servers.ImageServerProvider
 import qupath.lib.images.servers.ImageServers
@@ -123,8 +130,9 @@ static double getRational(TIFFDirectory tiffDir, int tag) {
  * @param file
  * @return
  */
-
+/// Here you need to provide the number of subdirectories you have. For example if you have the subdirectories 0/, 1/,... 4/; then N=5
 int N=15
+
 for(int count=0;count<N;count++)
 {
 
