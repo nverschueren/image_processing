@@ -1,4 +1,4 @@
-# A new way to include fields from the geojson. In this case I consider the distance to the border of the islet, using the contour of the nuclei
+# A new way to include fields from the geojson. In this case, I consider the distance to the border of the islet, using the contour of the nuclei
 # by N.Verschueren nv13699@my.bristol.ac.uk last update 7/8/23
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -16,6 +16,9 @@ cells=fd.askopenfilename();
 
 os.chdir(os.path.split(cells)[0])
 cells=pd.read_csv(cells)
+
+cells=cells.rename(columns={'Centroid X µm':'x','Centroid Y µm':'y'})
+
 
 case=input("What is the name of this case?")
 #new variables for the dataframe: case, distance to the border d2border, and distance to nones 
